@@ -5,17 +5,22 @@ In this repository I will implement various navigation elements of jetpack compo
 [![Generic badge](https://img.shields.io/badge/Language-Kotlin-green.svg)](https://shields.io/)
 
 ## Table of Contents
-1. [Task](#task)
-2. [Components](#components)
+1. [Components](#components)
+2. [Task](#task)
+3. [Implemented](#implemented)
+
+### Components
+- [Navigation with Compose](https://developer.android.com/jetpack/compose/navigation "Android Developer - Navigation with Compose")
 
 ### Task
-- Navigate between Pages
 - Nested Navigation 
 - Navigate with arguments
 - Navigate with custom arguments
 - ...
 
-### Components
-Pending...
+
+### Implemented
+- Navigate between Pages
+  - this is done using a Bottom Navigation Bar
 
 
