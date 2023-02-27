@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.sp
 fun BooksOverviewScreen(
     navigateToDetail: () -> Unit
 ) {
+    // TODO: Lazy Colum which gets the data from the bookSamples
+
     Column(
         modifier = Modifier
             .fillMaxWidth()

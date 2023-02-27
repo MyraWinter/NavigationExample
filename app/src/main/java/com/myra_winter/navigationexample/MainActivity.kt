@@ -10,8 +10,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.myra_winter.navigationexample.navigation.*
 import com.myra_winter.navigationexample.ui.theme.NavigationExampleTheme
@@ -45,23 +43,6 @@ fun MyApp() {
     }
 }
 
-
-@Composable
-fun NavigationExampleNavGraph(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = NavigationItems.Home.route
-) {
-    NavHost(
-        navController = navController,
-        startDestination = startDestination,
-        modifier = modifier
-    ) {
-        addHomeTopLevel(modifier, navController)
-        addMovieTopLevel(modifier, navController)
-        addBooksTopLevel(modifier, navController)
-    }
-}
 
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(showBackground = true)
