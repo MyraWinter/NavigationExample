@@ -8,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
+import com.myra_winter.navigationexample.helper.bookSamples
 import com.myra_winter.navigationexample.ui.books.detail.BooksDetailScreen
 import com.myra_winter.navigationexample.ui.books.overview.BooksOverviewScreen
 
@@ -20,26 +21,22 @@ fun NavGraphBuilder.addBooksTopLevel(
         startDestination = NavigationItems.Books.Overview.route
     ) {
         composable(NavigationItems.Books.Overview.route) {
-            BooksOverviewScreen(navigateToDetail = { navController.navigate(NavigationItems.Books.Details.route) })
+            BooksOverviewScreen(navController = navController)
         }
-        composable(NavigationItems.Books.Details.route) {
-            BooksDetailScreen()
-        }
+        composable(
+            NavigationItems.Books.Details.route + "/{selected}",
+            arguments = listOf(navArgument("selected") { type = NavType.IntType })
+        ) { backStackEntry ->
+            Log.i("NAVIGATION", "Is this called?")
 
-//        composable(
-//            NavigationItem.Books.Details.route + "/{selected}",
-//            arguments = listOf(navArgument("selected") { type = NavType.IntType })
-//        ) { backStackEntry ->
-//            Log.i("NAVIGATION", "Is this called?")
-//
-//            backStackEntry.arguments?.getInt("selected")?.let { book ->
-//                // get selected book here or better in viewModel?
-//                val specificBook = bookSamples.first {
-//                    Log.i("NAVIGATION", "Is this called?  ${it.title} &  $news")
-//                    it.identifier == book }
-//                BooksDetailScreen(specificBook)
-//            }
-//        }
+            backStackEntry.arguments?.getInt("selected")?.let { bookId ->
+                // get selected book here or better in viewModel? -> viewModel instead of Int a BookDbExample element should be transferred if possible
+                val specificBook = bookSamples.first {
+                    it.id == bookId
+                }
+                BooksDetailScreen(specificBook)
+            }
+        }
 
     }
 }

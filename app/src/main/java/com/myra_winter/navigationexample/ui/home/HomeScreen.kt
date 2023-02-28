@@ -1,5 +1,6 @@
 package com.myra_winter.navigationexample.ui.home
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -63,7 +64,7 @@ fun HomeScreen(
 
 @Composable
 @Preview(
-    group = "Profile", // in the corner you can see groups so that you do not need to render all
+    group = "Home", // in the corner you can see groups so that you do not need to render all
     // uiMode = UI_MODE_NIGHT_YES,
     name = "My Preview with changed BG",
     // showDecoration = true, ??
@@ -71,6 +72,13 @@ fun HomeScreen(
     showBackground = true,
     backgroundColor = 0x989a82,
 )
+@Preview(
+    group = "Profile",
+    name = "Dark Mode",
+    uiMode = Configuration.UI_MODE_NIGHT_UNDEFINED,
+    showBackground = true
+)
+@Preview(group = "Profile", name = "Full Preview", showSystemUi = true)
 fun HomeScreenPreview() {
     MaterialTheme {
         HomeScreen()

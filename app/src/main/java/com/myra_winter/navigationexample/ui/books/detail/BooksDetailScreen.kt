@@ -1,33 +1,66 @@
 package com.myra_winter.navigationexample.ui.books.detail
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextGeometricTransform
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.myra_winter.navigationexample.helper.BookDbExample
+import com.myra_winter.navigationexample.helper.bookSamples
 
 @Composable
-fun BooksDetailScreen(
-) {
+fun BooksDetailScreen(specificBook: BookDbExample) {
+    var modifier: Modifier = Modifier.padding(8.dp)
+
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "BooksDetailScreen",
-            fontSize = 25.sp,
-            fontWeight = FontWeight.Bold,
+            text = specificBook.title,
+            style = TextStyle(
+                fontSize = 24.sp,
+                fontFamily = FontFamily.Monospace,
+                letterSpacing = 4.sp,
+                textAlign = TextAlign.Center,
+                shadow = Shadow(
+                    color = Color.Black,
+                    offset = Offset(8f, 8f),
+                    blurRadius = 4f
+                ),
+                textGeometricTransform = TextGeometricTransform(
+                    scaleX = 1.5f,
+                    skewX = -0.2f
+                )
+            ),
+            modifier = modifier.fillMaxWidth()
         )
+        Text(
+            // justify text?
+            modifier = modifier,
+            text = specificBook.description
+        )
+        if (specificBook.iban != "") {
+            Row(modifier = modifier) {
+                Text(
+                    text = "IBAN: "
+                )
+                Text(
+                    text = specificBook.iban
+                )
+            }
+        }
     }
 }
 
@@ -35,6 +68,6 @@ fun BooksDetailScreen(
 @Preview
 fun BooksDetailScreenPreview() {
     MaterialTheme {
-        BooksDetailScreen()
+        BooksDetailScreen(bookSamples.first())
     }
 }
